@@ -16,6 +16,8 @@ class InputProcessor {
         return input
     }
 
+    val numberArugumentExceptionMessage = "은(는) 올바른 숫자가 아닙니다."
+
     private fun isNotNumeric(toCheck: String?): Boolean {
         return toCheck?.toDoubleOrNull() == null
     }
@@ -29,10 +31,9 @@ class InputProcessor {
 
         return processInput(
             firstNumberMessage,
-            "은(는) 올바른 숫자가 아닙니다.",
+            numberArugumentExceptionMessage,
             ::isNotNumeric
         ).toDouble()
-
     }
 
     fun getOperator(): String {
@@ -48,7 +49,7 @@ class InputProcessor {
         val secondNumberMessage = "계산에 사용될 두번째 값을 입력해주세요."
         return processInput(
             secondNumberMessage,
-            "은(는) 올바른 숫자가 아닙니다.",
+            numberArugumentExceptionMessage,
             ::isNotNumeric
         ).toDouble()
     }
