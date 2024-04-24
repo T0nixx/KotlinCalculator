@@ -2,16 +2,17 @@ class InputProcessor {
     private fun processInput(
         inputMessage: String,
         exceptionMessage: String,
-        validator: (String?) -> Boolean
+        validator: (String?) -> Boolean,
+        maximumRetryCount: Int = 5
     ): String {
         var input: String? = null
-        var counter = 0
 
+        var retryCounter = 0
         while (input.isNullOrEmpty() || validator(input)) {
-            require(counter < 5) { "'${input}'" + exceptionMessage }
+            require(retryCounter < maximumRetryCount) { "'${input}'" + exceptionMessage }
             println(inputMessage)
             input = readlnOrNull()
-            counter++
+            retryCounter++
         }
         return input
     }
