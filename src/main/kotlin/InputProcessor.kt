@@ -2,7 +2,7 @@ class InputProcessor {
     private fun processInput(
         inputMessage: String,
         exceptionMessage: String,
-        validator: (String?) -> Boolean,
+        validator: (String) -> Boolean,
         maximumRetryCount: Int = 5,
     ): String {
         var input: String? = null
@@ -18,12 +18,12 @@ class InputProcessor {
         return input
     }
 
-    private fun isNotNumeric(toCheck: String?): Boolean {
-        return toCheck?.toDoubleOrNull() == null
+    private fun isNotNumeric(toCheck: String): Boolean {
+        return toCheck.toDoubleOrNull() == null
     }
 
-    private fun isIllegalOperator(operator: String?): Boolean {
-        return operator !in arrayOf("+", "-", "*", "/", "%")
+    private fun isIllegalOperator(operator: String): Boolean {
+        return OperationName.fromOperator(operator) == null
     }
 
     private val numberArgumentExceptionMessage = "은(는) 올바른 숫자가 아닙니다."
@@ -38,14 +38,16 @@ class InputProcessor {
         ).toDouble()
     }
 
-    fun getOperator(): String {
+    fun getOperationName(): OperationName {
         val operatorMessage = "계산에 사용될 연산의 연산자 \"+, -, *, /, %\" 중 하나를 입력해주세요."
 
-        return processInput(
-            operatorMessage,
-            "은(는) 올바른 연산자가 아닙니다.",
-            ::isIllegalOperator
-        )
+        return OperationName.fromOperator(
+            processInput(
+                operatorMessage,
+                "은(는) 올바른 연산자가 아닙니다.",
+                ::isIllegalOperator
+            )
+        )!!
     }
 
     fun getSecondNumber(): Double {
