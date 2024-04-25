@@ -58,7 +58,7 @@ enum class OperationName(val operator: String) {
             )
 
         fun fromOperator(op: String) = operatorToOperationName[op]
-        fun getOperation(operationName: OperationName?) =
+        fun getOperation(operationName: OperationName) =
             operationNameToOperation[operationName]
     }
 }
