@@ -15,11 +15,7 @@ fun main() {
             else -> throw IllegalArgumentException("올바른 연산자가 아닙니다.")
         }
 
-        val calc = Calculator(
-            operation,
-            num1,
-            num2
-        )
+        val calc = Calculator(operation, num1, num2)
 
         println("계산 결과: " + calc.calculate())
     } catch (e: IllegalArgumentException) {
@@ -30,4 +26,3 @@ fun main() {
         println("처리 되지 않은 예외입니다. " + e.message)
     }
 }
-

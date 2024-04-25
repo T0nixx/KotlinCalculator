@@ -4,39 +4,36 @@ abstract class AbstractOperation() {
     }
 }
 
-class AddOperation() :
-    AbstractOperation() {
+class AddOperation() : AbstractOperation() {
     override fun operate(num1: Double, num2: Double): Double {
         return num1 + num2
     }
 }
 
-class SubtractOperation() :
-    AbstractOperation() {
+class SubtractOperation() : AbstractOperation() {
     override fun operate(num1: Double, num2: Double): Double {
         return num1 - num2
     }
 }
 
-class MultiplyOperation() :
-    AbstractOperation() {
+class MultiplyOperation() : AbstractOperation() {
     override fun operate(num1: Double, num2: Double): Double {
         return num1 * num2
     }
 }
 
-class DivideOperation() :
-    AbstractOperation() {
+class DivideOperation() : AbstractOperation() {
     override fun operate(num1: Double, num2: Double): Double {
-        if (num2 == 0.0) throw ArithmeticException("0으로 나눌 수 없습니다")
+        if (num2 == 0.0) throw ArithmeticException("0으로 나눌 수 없습니다.")
         return num1 / num2
     }
 }
 
-class RemainderOperation() :
-    AbstractOperation() {
+class RemainderOperation() : AbstractOperation() {
     override fun operate(num1: Double, num2: Double): Double {
-        if (num2 == 0.0) throw ArithmeticException("0으로 나눈 나머지를 구할 수 없습니다")
+        if (num2 == 0.0) {
+            throw ArithmeticException("0으로 나눈 나머지를 구할 수 없습니다.")
+        }
         return num1 % num2
     }
 }
